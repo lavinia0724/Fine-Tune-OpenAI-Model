@@ -1,4 +1,4 @@
-## LAVI's Fine-Tune OpenAI Model Code
+## LAVI's Fine-Tune OpenAI Model Side Project
 
 ## Info
 - 利用 Python 套件 pytesseract  進行影像文字分析後，進行字串處理調整為可提供給 OpenAI GPT-3 model prompt 的詢問語句，並進行 OpenAI model 訓練，使訓練出的模型可根據訓練資料回答資訊
