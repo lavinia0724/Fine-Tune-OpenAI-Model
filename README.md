@@ -18,7 +18,7 @@
 
 #### 3. OpenAI 模型訓練
 - 將處理好的字串進行 jieba 切割
-        - 因為 OpenAI 讀取關鍵字時難以正確判斷中文字串語意，可利用 jieba 斷詞器對字串進行權重切割，可另 OpenAI 模型更好的對關鍵詞進行訓練
+    - 因為 OpenAI 讀取關鍵字時難以正確判斷中文字串語意，可利用 jieba 斷詞器對字串進行權重切割，可另 OpenAI 模型更好的對關鍵詞進行訓練
 - 利用 `prompt = f"{prevPrompt}\n{prevAns}\n###\n{oriprompt}"` 使上一筆的查詢與結果可影響當前的輸入訓練結果，使各筆輸出結果判斷越漸相似
 - 利用 `openai.Completion.create()` 對 OpenAI davinci model 進行訓練
 
