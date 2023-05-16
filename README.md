@@ -11,22 +11,28 @@ Fine-Tune [OpenAI](https://platform.openai.com/docs/guides/fine-tuning/fine-tuni
 - 將 OpenAI API key 放進系統環境變數
 - 將想 text detection 的圖片放好後，修改程式中讀取圖片的路徑
 - pytesseract 套件預設提取英文字，故需下載繁體中文包 (放在 Program Files\Tesseract-OCR 中讀取)
+
 #### 2. pytesseract 讀取圖片後進行字串處理
 - 利用 PIL 的 `pytesseract.image_to_string` 讀取指定圖片上的文字內容，語言使用 chi_tra (繁體中文)
 - 用 replace 將讀取的不必要空白取代，並對整體文字內容進行 split 切割成獨立字串
+
 #### 3. OpenAI 模型訓練
 - 將處理好的字串進行 jieba 切割
-- 因為 OpenAI 讀取關鍵字時難以正確判斷中文字串語意，可利用 jieba 斷詞器對字串進行權重切割，可另 OpenAI 模型更好的對關鍵詞進行訓練
+    - 因為 OpenAI 讀取關鍵字時難以正確判斷中文字串語意，可利用 jieba 斷詞器對字串進行權重切割，可另 OpenAI 模型更好的對關鍵詞進行訓練
 - 利用 `prompt = f"{prevPrompt}\n{prevAns}\n###\n{oriprompt}"` 使上一筆的查詢與結果可影響當前的輸入訓練結果，使各筆輸出結果判斷越漸相似
 - 利用 `openai.Completion.create()` 對 OpenAI davinci model 進行訓練
+
 #### 4. 整理收到的回應與每筆輸出資訊
 - 利用 pandas 中 `pd.concat` 將每筆資訊整合
+
 #### 5. 儲存整理好的資訊
 - 利用 `df.to_csv("TrainingModel.csv", encoding="utf_8_sig")` 將資訊輸出成 `.csv` 檔案
+
 #### 6. OpenAI Fine-Tune model 資料預處理
 - Fine-Tune mode 指定訓練資料欄位名稱為：`prompt`、`completion`
 - 調整好欄位資訊後輸出成 `.csv` 檔案
     - OpenAI 官方文件說可以提供 `.csv` 檔，而他在 Fine-Tune 你的模型時會將其轉為 `.jsonl` 格式
+
 #### 7. Fine-Tune Training Command
 - `openai tools fine_tunes.prepare_data -f <LOCAL_FILE>`
     - 讀取 `preparedData.csv` 為我的 fine_tune prepare data
@@ -35,6 +41,7 @@ Fine-Tune [OpenAI](https://platform.openai.com/docs/guides/fine-tuning/fine-tuni
 - `openai api fine_tunes.follow -i <YOUR_FINE_TUNE_JOB_ID>`
     - 查看我目前模型訓練的進度
     - 看你的 model 排隊進 queue 裡被訓練了沒，可能會花 30 min 到 1 hr 不等
+    
 #### 8. 測試模型訓練完的結果
 - 進到 [OpenAI playground](https://platform.openai.com/playground) 後選擇你的 Fine-Tune 模型
 - 在僅輸入 keyword 的前提下，輸出會與你的 Training Dataset 相似邏輯
