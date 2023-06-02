@@ -1,4 +1,5 @@
 ## LAVI's Fine-Tune OpenAI Model Side Project
+###### tags: `Side Project` `OpenAI API` `LAVI` `2023` 
 [Fine-Tune OpenAI](https://platform.openai.com/docs/guides/fine-tuning/fine-tuning) davinci 模型
 
 ## Information
