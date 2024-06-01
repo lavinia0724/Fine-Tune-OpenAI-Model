@@ -1,6 +1,7 @@
 ## LAVI's Fine-Tune OpenAI Model Side Project
 ###### tags: `Side Project` `OpenAI API` `pytesseract` `LAVI` `2023` 
 [Fine-Tune OpenAI](https://platform.openai.com/docs/guides/fine-tuning/fine-tuning) davinci model with pytesseract
+我的部落格文章：[OpenAI API - Fine-Tune OpenAI Model Side Project](https://lavinia0724.github.io/2023/04/07/OpenAI-API-Fine-Tune-OpenAI-Model/)
 
 ## Information
 ### Summary
